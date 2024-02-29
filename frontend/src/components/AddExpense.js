@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Nav from "./Nav";
 
 const AddExpense = () => {
     const [groups, setGroups] = useState([]);
@@ -16,7 +17,7 @@ const AddExpense = () => {
 
     useEffect(() => {
         fetchGroups();
-        // Call handleEquallySplitChange by default when component mounts
+
         handleEquallySplitChange();
     }, []);
 
@@ -54,17 +55,17 @@ const AddExpense = () => {
             throw error;
         }
     };
-    const updateOwn =async ()=> {
-        const uname = localStorage.getItem('uname');
-        console.log("in updateOwn"+amount);
-        const response1 = await axios.put(`http://localhost:8080/api/ownamt/${uname}`, { ownAmount:amount });
-        console.log(amount+"jay chhe.");
-    }
+    // const updateOwn =async ()=> {
+    //     const uname = localStorage.getItem('uname');
+    //     console.log("in updateOwn"+amount);
+    //     const response2 = await axios.put(`http://localhost:8080/api/ownamt/${uname}/${amount}`);
+    //     // console.log(response2.data.ownAmount+"jayy chhe.");
+    // }
 
     const updateOwe = async () => {
         const uname = localStorage.getItem('uname');
         console.log("in updateOwe" + amounts.arpan);
-        const response1 = await axios.put(`http://localhost:8080/api/oweamt/${uname}`, amounts);
+        const response1 = await axios.put(`http://localhost:8080/api/oweamt/${uname}/${amount}`, amounts);
         console.log(amount + "jay chhe.");
     }
     const handleSubmit = async (e) => {
@@ -74,24 +75,6 @@ const AddExpense = () => {
             window.alert('Total amount for each member must be equal to the overall amount.');
             return;
         }
-
-        // if (equallySplit) {
-            // const equalAmount = parseFloat(amount) / groupMembers.length;
-
-            // console.log("bbb"+groupMembers);
-
-            // groupMembers.forEach(member => {
-            //     console.log({member});
-            //     handleAmountChange({member},{equalAmount});
-            // });
-            // console.log(amounts);
-
-
-
-        // } else {
-        //     // Clear amounts when switching back to unequally split
-        //     setAmounts({});
-        // }
 
         try {
             const amountsArray = Object.entries(amounts).map(([member, amount]) => ({ [member]: parseFloat(amount) }));
@@ -114,8 +97,7 @@ const AddExpense = () => {
                     createdAt: formattedDate,
                 }),
             });
-            updateOwn();
-            updateOwe();
+
 
 
 
@@ -123,7 +105,8 @@ const AddExpense = () => {
                 throw new Error('Failed to add expense. Please try again.');
             }
 
-
+            // updateOwn();
+            updateOwe();
             const responseData = await response.json();
 
             // Handle successful expense addition (e.g., show success message)
@@ -226,16 +209,7 @@ const AddExpense = () => {
         <div className='dashboard-container'>
             <div className='rounded-blocks'>
                 <div className='left-section'>
-                    <div className='nav-bar'>
-                        <div className='logo'>
-                            <a href='#'>Money Tracker</a>
-                        </div>
-                        <ul>
-                            <li><a href='/Dashboard'>Home</a></li>
-                            <li><a href='/groups'>Groups</a></li>
-                            <li><a href='/'>Logout</a></li>
-                        </ul>
-                    </div>
+                    <Nav />
                 </div>
                 <div className='center-section'>
                     <h2 className='h2'>Add Expense</h2>
@@ -272,7 +246,7 @@ const AddExpense = () => {
                                     <label htmlFor="equallySplitCheckbox" className='h2'>Equally Split</label>
                                 </div>
                             ) : (
-                                // Render checkboxes and text fields for each group member
+
                                 <>
                                     <div>
                                         <input

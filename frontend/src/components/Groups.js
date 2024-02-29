@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import Nav from "./Nav";
 
 const Dashboard = ({ moneymanager }) => {
     const [groups, setGroups] = useState([]);
@@ -39,16 +39,7 @@ const Dashboard = ({ moneymanager }) => {
         <div className='dashboard-container'>
             <div className='rounded-blocks'>
                 <div className='left-section'>
-                    <div className='nav-bar'>
-                        <div className='logo'>
-                            <a href='#'>Money Tracker</a>
-                        </div>
-                        <ul>
-                            <li><a href='/Dashboard'>Home</a></li>
-                            <li><a href='/groups'>Groups</a></li>
-                            <li><a href='/'>Logout</a></li>
-                        </ul>
-                    </div>
+                    <Nav />
                 </div>
                 <div className='center-section'>
                     <div className='activities' style={{overflowY: 'auto', maxHeight: '400px'}}>
@@ -88,9 +79,24 @@ const Dashboard = ({ moneymanager }) => {
                     <div>
                         <h2 className='h2'>Groups</h2>
                         <ul className="group-list h2">
-                        {groups.map(group => (
-                                <li key={group.id}
-                                    onClick={() => handleGroupClick(group.id, group.groupName)}>{group.groupName}</li>
+                            {groups.map(group => (
+                                <li
+                                    key={group.id}
+                                    onClick={() => handleGroupClick(group.id, group.groupName)}
+                                    style={{
+                                        background: 'transparent',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        padding: '10px',
+                                        margin: '5px',
+                                        borderRadius: '5px',
+                                        transition: 'background 0.3s ease',
+                                    }}
+                                    onMouseEnter={(e) => { e.target.style.background = 'blue'; }}
+                                    onMouseLeave={(e) => { e.target.style.background = 'transparent'; }}
+                                >
+                                    {group.groupName}
+                                </li>
                             ))}
                         </ul>
                     </div>

@@ -7,7 +7,7 @@ import Account from './components/Account';
 import Dashboard from "./components/Dashboard";
 import Groups from "./components/Groups";
 import AddExpense from './components/AddExpense';
-// import Settle from './components/Settle';
+
 import AddGroup from './components/AddGroup'
 
 // import Default from "./components/Default";

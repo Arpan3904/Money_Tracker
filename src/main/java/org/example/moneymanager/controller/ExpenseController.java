@@ -34,41 +34,47 @@ public class ExpenseController {
         return ResponseEntity.status(201).body(savedExpense);
     }
 
+//    @CrossOrigin(origins = "http://localhost:3000")
+//    @PutMapping("/ownamt/{uname}/{amount}")
+//    public User ownUser(@PathVariable String uname, @PathVariable double amount) {
+//            User user = userService.findByUsername(uname);
+////            System.out.println("Current ownAmount for " + uname + ": " + user1.getOwnAmount());
+////            System.out.println(amount);
+//            user.setOwnAmount(0); // Update ownAmount
+////            System.out.println("New ownAmount for " + uname + ": " + user1.getOwnAmount());
+//            userRepository.save(user);
+//            return user;
+//    }
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/ownamt/{uname}")
-    public User ownUser(@PathVariable String uname, @RequestBody User request) {
+    @PutMapping("/settle/{uname}")
+    public User Settle(@PathVariable String uname) {
         User user1 = userService.findByUsername(uname);
-        if (user1 == null) {
-            throw new RuntimeException("User not found with username: " + uname);
-        }
-        System.out.println("aaa"+uname);
-        System.out.println(request.getOwnAmount());
-        System.out.println(user1.getOwnAmount());
-        user1.setOwnAmount(user1.getOwnAmount()+request.getOwnAmount());
-        return userRepository.save(user1);
+        user1.setOwnAmount(0);
+        user1.setOweAmount(0);
+        System.out.println("hhh");
+        userRepository.save(user1);
+        return user1;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/oweamt/{uname}")
-    public User oweUser(@PathVariable String uname, @RequestBody Map<String, Integer> amounts) {
+    @PutMapping("/oweamt/{uname}/{amt}")
+    public User oweUser(@PathVariable String uname, @RequestBody Map<String, Integer> amounts,@PathVariable double amt) {
         System.out.println(amounts.entrySet());
         User user1 = userService.findByUsername(uname);
         if (user1 == null) {
             throw new RuntimeException("User not found with username: " + uname);
         }
-
+        user1.setOwnAmount(user1.getOwnAmount()+amt);
+        userRepository.save(user1);
         for (Map.Entry<String, Integer> entry : amounts.entrySet()) {
             String username = entry.getKey();
             Integer amount = entry.getValue();
             System.out.println("username : "+username+" amount : "+amount);
+            User user2 = userService.findByUsername(username);
+            user2.setOweAmount(user2.getOweAmount() + amount);
+            user2.setTotalExpense(user2.getTotalExpense() + amount);
+            userRepository.save(user2);
 
-            // Find the user by username
-            User userToUpdate = userService.findByUsername(username);
-            if (userToUpdate != null) {
-                // Update the oweAmount for the user
-                userToUpdate.setOweAmount(userToUpdate.getOweAmount() + amount);
-                userRepository.save(userToUpdate);
-            }
         }
 
         return user1;

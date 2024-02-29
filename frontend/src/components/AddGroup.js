@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
+import Nav from "./Nav";
 const AddGroup = () => {
     const [groupName, setGroupName] = useState('');
     const [memberName, setMemberName] = useState('');
@@ -72,16 +73,7 @@ const AddGroup = () => {
         <div className='dashboard-container'>
             <div className='rounded-blocks'>
                 <div className='left-section'>
-                    <div className='nav-bar'>
-                        <div className='logo'>
-                            <a href='#'>Money Tracker</a>
-                        </div>
-                        <ul>
-                        <li><a href='/Dashboard'>Home</a></li>
-                            <li><a href='/groups'>Groups</a></li>
-                            <li><a href='/'>Logout</a></li>
-                        </ul>
-                    </div>
+                    <Nav />
                 </div>
                 <div className='center-section'>
                     <h2 className='h2'>Create Group</h2>

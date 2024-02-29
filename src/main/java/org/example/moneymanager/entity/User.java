@@ -18,6 +18,17 @@ public class User {
     @Column(columnDefinition = "double default 0.0")
     private double ownAmount;
 
+    public Double getTotalExpense() {
+        return totalExpense;
+    }
+
+    public void setTotalExpense(Double totalExpense) {
+        this.totalExpense = totalExpense;
+    }
+
+    @Column(name = "total_expense") // Add column for total expense
+    private Double totalExpense;
+
     public Long getId() {
         return id;
     }
