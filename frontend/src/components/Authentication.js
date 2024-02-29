@@ -58,7 +58,7 @@ const Authentication = () => {
                         <span></span>
                         <label>Password</label>
                     </div>
-                    <div class="pass">Forget Password?</div>
+
                     <input name="submit" type="Submit" value="Login"/>
                     <Link to = "/signup" style={linkStyle}>
                         <div class="signup_link">

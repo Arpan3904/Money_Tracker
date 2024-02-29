@@ -330,7 +330,7 @@ th {
   cursor: pointer;
   transition: background-color 0.3s ease;
   position: fixed;
-  right: 350px;
+  right: 260px;
   bottom: 170px;
 }
 
@@ -344,13 +344,17 @@ th {
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 15px;
   background-color: #1f381f; /* Set background color to white */
   margin-right: 20px;
   align-items: center;
+  width: 17vw;
+  height: 40vh;
 }
 
 .infotext{
+  margin-top: 10vh;
+  font-size: x-large;
+  font-weight: bold;
   text-align: center;
   color: white;
 }

@@ -46,13 +46,30 @@ const Dashboard = ({ moneymanager }) => {
                         <h2 className='h2'>Expenses for Group {selectedGroupName}</h2>
                         <ul>
                             {expenses.map(expense => (
-                                <div key={expense.id} className="expense-box">
-                                    <h3>Expense Details</h3>
-                                    <p><strong>Description:</strong> {expense.description}</p>
-                                    <p><strong>Amount:</strong> {expense.amount}</p>
-                                    <p><strong>Date:</strong> {new Date(expense.createdAt).toLocaleString()}</p>
-                                    <p><strong>Paid By:</strong> {expense.paidBy}</p>
-                                    {/* Additional details from amounts map */}
+                                <div key={expense.id} className="expense-box" style={{
+                                    border: '2px solid #ccc',
+                                    padding: '10px',
+                                    marginBottom: '20px',
+                                    borderRadius: '5px'
+                                }}>
+                                    <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px'}}>
+                                        <div>
+                                            <p><strong>Description:</strong></p>
+                                            <p>{expense.description}</p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Amount:</strong></p>
+                                            <p>{expense.amount}</p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Date:</strong></p>
+                                            <p>{expense.createdAt.toString()}</p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Paid By:</strong></p>
+                                            <p>{expense.paidBy}</p>
+                                        </div>
+                                    </div>
                                     <table>
                                         <thead>
                                         <tr>
@@ -92,7 +109,8 @@ const Dashboard = ({ moneymanager }) => {
                                         borderRadius: '5px',
                                         transition: 'background 0.3s ease',
                                     }}
-                                    onMouseEnter={(e) => { e.target.style.background = 'blue'; }}
+                                    onMouseEnter={(e) => {
+                                        e.target.style.background = 'blue'; }}
                                     onMouseLeave={(e) => { e.target.style.background = 'transparent'; }}
                                 >
                                     {group.groupName}
@@ -100,9 +118,11 @@ const Dashboard = ({ moneymanager }) => {
                             ))}
                         </ul>
                     </div>
+
                     <Link to='/addgroup'>
-                        <button className='action-button3'>Add Group</button>
+                        <button className='action-button3' style={{marginLeft:'70vw'}}>Add Group</button>
                     </Link>
+
                 </div>
 
             </div>

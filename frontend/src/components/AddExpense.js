@@ -81,7 +81,17 @@ const AddExpense = () => {
             const formattedAmounts = Object.assign({}, ...amountsArray);
 
             const currentDate = new Date();
-            const formattedDate = currentDate.toISOString();
+            const hours = currentDate.getHours();
+            const minutes = currentDate.getMinutes();
+            const seconds = currentDate.getSeconds();
+            const day = currentDate.getDate();
+            const month = currentDate.getMonth() + 1; // Adding 1 to month because months are zero-indexed
+            const year = currentDate.getFullYear();
+            const addLeadingZero = (num) => {
+                return num < 10 ? "0" + num : num;
+            };
+            const formattedString = `${addLeadingZero(hours)}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}-${addLeadingZero(day)}/${addLeadingZero(month)}/${year}`;
+
 
             const response = await fetch('http://localhost:8080/api/expenses', {
                 method: 'POST',
@@ -94,7 +104,7 @@ const AddExpense = () => {
                     amount: parseFloat(amount),
                     paidBy: equallySplit ? 'equally' : 'unequally',
                     amounts: formattedAmounts,
-                    createdAt: formattedDate,
+                    createdAt: formattedString,
                 }),
             });
 

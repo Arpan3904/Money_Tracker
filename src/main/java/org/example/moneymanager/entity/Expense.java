@@ -34,9 +34,8 @@ public class Expense {
     @Column(name = "amount")
     private Map<String, Double> amounts;
 
-    @Column(name = "created_at") // Add column for storing creation date and time
-    @Temporal(TemporalType.TIMESTAMP) // Specify temporal type as TIMESTAMP
-    private LocalDateTime createdAt;
+    @Column(name = "created_at")
+    private String createdAt;
 
     public Long getId() {
         return id;
@@ -86,11 +85,11 @@ public class Expense {
         this.amounts = amounts;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 }
