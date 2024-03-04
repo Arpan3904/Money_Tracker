@@ -16,7 +16,7 @@ const Nav = () => {
             </div>
             <ul>
                 <li><a onClick={() => handleNavigation('/dashboard')}>Home</a></li>
-                <li><a onClick={() => handleNavigation('/groups')}>Groups</a></li>
+                <li><a onClick={() => handleNavigation('/groups')}>Expenses</a></li>
                 <li><a onClick={() => handleNavigation('/')}>Logout</a></li>
             </ul>
         </div>
