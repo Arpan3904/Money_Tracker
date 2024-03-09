@@ -26,7 +26,7 @@ public class User {
         this.totalExpense = totalExpense;
     }
 
-    @Column(name = "total_expense") // Add column for total expense
+    @Column(name = "total_expense",columnDefinition = "double default 0.0") // Add column for total expense
     private Double totalExpense;
 
     public Long getId() {

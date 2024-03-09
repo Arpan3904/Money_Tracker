@@ -121,6 +121,7 @@ const AddExpense = () => {
 
             // Handle successful expense addition (e.g., show success message)
             console.log('Expense added successfully:', responseData);
+            window.alert('Expense added successfully');
 
             setDescription('');
             setAmount('');
@@ -132,6 +133,7 @@ const AddExpense = () => {
         } catch (error) {
             setError('Failed to add expense. Please try again.');
             console.error('Add expense error:', error);
+            window.alert('Add expense error');
         }
     };
 

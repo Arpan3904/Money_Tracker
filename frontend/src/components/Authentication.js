@@ -37,9 +37,11 @@ const Authentication = () => {
                 navigate('/dashboard');
             } else {
                 console.error('Login failed:', response.data.error);
+                window.alert('Login failed');
             }
         } catch (error) {
             console.error('Error during login:', error.message);
+            window.alert('Error during login');
         }
     };
 

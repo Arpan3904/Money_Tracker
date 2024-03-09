@@ -60,7 +60,7 @@ const AddGroup = () => {
 
             console.log("Members added to group successfully!");
 
-            // Reset state after successful submission
+           window.alert("Group "+groupName+" added successfully! ");
             setGroupName('');
             setMembers([]);
             console.log("State reset successfully!");

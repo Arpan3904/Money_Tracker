@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Account = () => {
+    const navigate = useNavigate(); // Move useNavigate inside the component function
 
     const linkStyle = {
-        textDecoration: 'none', // Removes the underline
-        color: 'inherit', // Keeps the default link color
+        textDecoration: 'none',
+        color: 'inherit',
     };
 
     const [user, setUser] = useState({
@@ -25,24 +27,21 @@ const Account = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Make a POST request to the signup endpoint
             const response = await fetch('http://localhost:8080/api/users/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    // You can add other headers if needed
                 },
                 body: JSON.stringify(user),
             });
 
             if (response.ok) {
-
                 const responseData = await response.json();
-                console.log(responseData.message);
+                window.alert("Registered Successfully"); // Correct 'windows' to 'window'
+                navigate("/");
             } else {
-                // If the response status is not OK, handle the error case
                 const errorData = await response.json();
-                console.error('Error during signup:', errorData.error);
+                window.alert('Error during Register');
             }
         } catch (error) {
             // Handle network errors or other exceptions
@@ -50,7 +49,7 @@ const Account = () => {
     };
 
     return (
-        <div className='conatiner'>
+        <div className='container'> {/* Corrected className */}
             <div className='center'>
                 <h1>Register</h1>
                 <form action='' method='POST' onSubmit={handleSubmit}>
@@ -74,10 +73,10 @@ const Account = () => {
                         <label>Confirm Password</label>
                     </div>
                     <input name="submit" type="Submit" value="Sign Up"/>
-                    <Link to = "/" style={linkStyle}>
-                    <div class="signup_link">
-                        Have an Account ? Login
-                    </div>
+                    <Link to="/" style={linkStyle}>
+                        <div className="signup_link"> {/* Corrected className */}
+                            Have an Account? Login
+                        </div>
                     </Link>
                 </form>
             </div>
@@ -85,4 +84,4 @@ const Account = () => {
     )
 }
 
-export default Account
+export default Account;
