@@ -41,6 +41,7 @@ public class UserController {
 
             // Encode the password before saving it to the database
             user.setPassword((user.getPassword()));
+            user.setTotalExpense(0.0);
             user.setOweAmount(0);
             user.setOwnAmount(0);
 

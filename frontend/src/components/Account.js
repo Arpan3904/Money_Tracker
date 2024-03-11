@@ -37,19 +37,19 @@ const Account = () => {
 
             if (response.ok) {
                 const responseData = await response.json();
-                window.alert("Registered Successfully"); // Correct 'windows' to 'window'
+                window.alert("Registered Successfully");
                 navigate("/");
             } else {
                 const errorData = await response.json();
                 window.alert('Error during Register');
             }
         } catch (error) {
-            // Handle network errors or other exceptions
+
         }
     };
 
     return (
-        <div className='container'> {/* Corrected className */}
+        <div className='container'>
             <div className='center'>
                 <h1>Register</h1>
                 <form action='' method='POST' onSubmit={handleSubmit}>
@@ -74,7 +74,7 @@ const Account = () => {
                     </div>
                     <input name="submit" type="Submit" value="Sign Up"/>
                     <Link to="/" style={linkStyle}>
-                        <div className="signup_link"> {/* Corrected className */}
+                        <div className="signup_link">
                             Have an Account? Login
                         </div>
                     </Link>

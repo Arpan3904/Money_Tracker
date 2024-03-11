@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
 import Nav from "./Nav";
+
 const AddGroup = () => {
     const [groupName, setGroupName] = useState('');
     const [memberName, setMemberName] = useState('');
